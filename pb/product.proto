@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package product;
+import "google/protobuf/empty.proto";
+
+option go_package="internal/product";
+
+service ProductService {
+    rpc AddProduct (AddProductRequest) returns (Product);
+    rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+    rpc UpdateProduct (UpdateProductRequest) returns (Product);
+    rpc DeleteProduct (DeleteProductRequest) returns (google.protobuf.Empty);
+}
+
+message Product {
+    string id =1;
+    string name =2;
+    string description =3;
+    float price =4;
+    int32 stock =5; 
+}
+
+message GetProductRequest{}
+
+message GetProductResponse {
+    repeated Product products=1;
+}
+
+message AddProductRequest {
+    string name =1;
+    string description =2;
+    float price =3;
+    int32 stock =4;
+}
+
+message UpdateProductRequest {
+    string id =1;
+    string name =2;
+    string description =3;
+    float price =4;
+    int32 stock =5; 
+}
+
+message DeleteProductRequest {
+    string id =1;
+}
+
